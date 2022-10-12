@@ -1,0 +1,10 @@
+*.png
+*.xlsx
+*.Rhistory
+*.csv
+__pycache__/*
+*.coverage
+dist/*
+*/__pycache__/*
+*/.ipynb_checkpoints/
+*.pylint*

@@ -1,0 +1,85 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gilbert-elliot-model"
+description = 'Gilbert-Elliot burst error model simulation and analysis software.'
+readme = "README.md"
+requires-python = ">=3.7"
+license = { file = "LICENSE.md" }
+
+keywords = [
+	"bit-errors", "bursty errors", "error statistics", "Gilbert-Elliot", "Markov chain", "packet-loss"
+]
+authors = [
+	{ name = "The Institute for Telecommunications Sciences" },
+]
+
+maintainers = [
+  { name = "Jaden Pieper", email = "jpieper@ntia.gov" },
+]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Natural Language :: English",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+dependencies = [
+	"hmmlearn==0.2.8",
+	"numpy>=1.23.0",
+	"sympy>=1.10.1",
+	"pandas>=1.4.3",
+	"jupyter>=1.0.0",
+	"plotly>=5.8.2",
+]
+dynamic = ["version"]
+
+
+[project.urls]
+Documentation = "https://github.com/unknown/gilbert-elliot-model#readme"
+Issues = "https://github.com/unknown/gilbert-elliot-model/issues"
+Source = "https://github.com/unknown/gilbert-elliot-model"
+
+[tool.hatch.version]
+path = "gilbert_elliot_model/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pytest",
+  "pytest-cov",
+]
+
+[tool.hatch.envs.default.scripts]
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=gilbert_elliot_model --cov=tests"
+no-cov = "cov --no-cov"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["37", "38", "39", "310", "311"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = [
+  "gilbert_elliot_model/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[project.scripts]
+gilbert-elliot = "gilbert_elliot_model.gilbert_elliot:main"
