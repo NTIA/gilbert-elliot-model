@@ -2,10 +2,10 @@
 
 The Gilbert-Elliot burst error model is a popular and effective tool for treating bursty (non-independent) errors in communication links.
 This software accompanies the NTIA Technical Memorandum 23-XXXX.
-It provides functions for simulating errors using the model and to analyze error arrays to estimate model parameters.
-It can also make an estimate of the most likely version of the model: the two-parameter $(p, r)$, three-parameter $(p, r, h)$ or four-parameter $(p, r, k, h)$.
+It provides functions for simulating errors using the model and analyzing error arrays to estimate model parameters.
+It can also make an estimate of the most likely version of the model to emit a given observation: the two-parameter $(p, r)$, three-parameter $(p, r, h)$ or four-parameter $(p, r, k, h)$.
 
-Upon installation the package provides a command line interface to determine valid model control values and simulate errors.
+Upon installation the package provides a command line interface which allows users to determine valid model control values and simulate errors.
 
 ## Installation
 Navigate to the directory containing the source code and run:
@@ -33,15 +33,15 @@ Here we list the primary methods included in the package with a brief descriptio
 
 ### Selecting a model
 
-It is worth noting that for a given observation of an error pattern, there may be more than one set of model parameters that could yield that pattern or very similar patterns. 
-Due to this, unless there is a good reason for selecting a more complicated model (such as the three- or four-parameter) models, we suggest using the two-parameter model.
+It is worth noting that more than one set of model parameters could yield the same or very similar error patterns.
+Thus, unless there is a good reason for selecting a more complicated model (such as the three- or four-parameter) models, we suggest using the two-parameter model.
 More complicated models are valid and interesting provided there is good reasoning behind their use. 
 We provide the `determine_model` method as an additional tool in this process, but do not claim that it should be the primary decision maker as to which model is most appropriate in a given situation.
 
 ## Stochastic Behavior
 The functions `fit_hmm` and `determine_model` are stochastic in nature and also fairly slow, making them unsuitable for standard unit testing.
 To understand the functionality of each method and ensure they are working as intended, a number of random tests were performed and their results analyzed.
-This analysis is viewable at
+These analyses are viewable at
 [fit hmm distribution analysis](https://nbviewer.org/github/NTIA/gilbert-elliot-model/blob/main/tests/distribution_analysis.ipynb)
 and
 [determine model analysis](https://nbviewer.org/github/NTIA/gilbert-elliot-model/blob/main/tests/determine_model_tests.ipynb)
@@ -49,7 +49,7 @@ respectively.
 
 ## Command Line Interface
 Upon installation, a command line tool called `gilbert-elliot.exe` is installed and added to the path.
-It can determine valid model control values and simulate error patterns.
+It allows users to determine valid model control values and simulate error patterns.
 To see all options for the command line tool run 
 
 ```
