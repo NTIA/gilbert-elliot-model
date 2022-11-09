@@ -13,11 +13,7 @@ keywords = [
 	"bit-errors", "bursty errors", "error statistics", "Gilbert-Elliot", "Markov chain", "packet-loss"
 ]
 authors = [
-	{ name = "The Institute for Telecommunications Sciences" },
-]
-
-maintainers = [
-  { name = "Jaden Pieper", email = "jpieper@ntia.gov" },
+	{ name = "Jaden Pieper", email = "jpieper@ntia.gov" },
 ]
 
 classifiers = [
@@ -47,9 +43,9 @@ dynamic = ["version"]
 
 
 [project.urls]
-Documentation = "https://github.com/unknown/gilbert-elliot-model#readme"
-Issues = "https://github.com/unknown/gilbert-elliot-model/issues"
-Source = "https://github.com/unknown/gilbert-elliot-model"
+Documentation = "https://github.com/NTIA/gilbert-elliot-model#readme"
+Issues = "https://github.com/NTIA/gilbert-elliot-model/issues"
+Source = "https://github.com/NTIA/gilbert-elliot-model"
 
 [tool.hatch.version]
 path = "gilbert_elliot_model/__about__.py"

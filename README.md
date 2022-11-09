@@ -22,9 +22,9 @@ import gilbert_elliot_model as ge
 print(help(ge.simulate))
 ```
 
-Here we list the primary methods included in the package with a brief description of each 
+Here we list the primary methods included in the package with a brief description of each:
 * `simulate` - Simulate errors using the Gilbert-Elliot burst model and a variety of controls as parameters.
-* `determine_model` - Determine most likely version of Gilbert-Elliot model given observation.
+* `determine_model` - Determine version of Gilbert-Elliot model with highest likelihood of emitting observation.
 * `model_error_statistics` - Determine error statistics given model parameters.
 * `data_error_statistics` - Measure error statsitics from error pattern.
 * `fit_hmm` - Fit two-state Hidden Markov model to data in observation.
@@ -48,7 +48,7 @@ and
 respectively.
 
 ## Command Line Interface
-Upon installation, a command line tool called `gilbert-elliot.exe` is installed and added to the path.
+Upon installation, a command line tool called `gilbert-elliot` is installed and added to the path.
 It allows users to determine valid model control values and simulate error patterns.
 To see all options for the command line tool run 
 

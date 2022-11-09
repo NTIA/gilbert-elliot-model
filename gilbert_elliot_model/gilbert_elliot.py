@@ -72,7 +72,7 @@ def model_error_statistics(p, r, k, h):
 
 def data_error_statistics(error):
     """
-    Measure error statsitics from error pattern.
+    Measure error statistics from error pattern.
 
     Measures the error_rate and expected_burst_length of the error pattern.
 
@@ -132,7 +132,7 @@ def conditional_event(conditional_event_rate, random_number_generator):
     Returns
     -------
     error : int
-        Either 0 or 1, 1 represents the event occuring.
+        Either 0 or 1, 1 represents the event occurring.
 
     """
     event_draw = random_number_generator.uniform()
@@ -150,7 +150,7 @@ def simulate_errors(p, r, k, h, n=1000, seed=None):
 
     Creates a list representing an error signal. The error signal is expected
     to be added with modulo 2 addition to a binary signal, so 0 means no error
-    occured in that element and a 1 means an error did occur.
+    occurred in that element and a 1 means an error did occur.
 
     Parameters
     ----------
@@ -175,7 +175,7 @@ def simulate_errors(p, r, k, h, n=1000, seed=None):
     # Initialize random number generator
     rng = np.random.default_rng(seed)
 
-    # Deterimine initial state based off of proportion of time spent in bad state
+    # Determine initial state based off of proportion of time spent in bad state
     pi_B = p/(p + r)
     init_state = conditional_event(pi_B, rng)
 
@@ -188,12 +188,12 @@ def simulate_errors(p, r, k, h, n=1000, seed=None):
     # transition evaluations in the Bad state.
     states = [init_state]
 
-    # Determine if an error occured in the initial state
+    # Determine if an error occurred in the initial state
     errors = []
 
     # Iterate to generate entire error vector
     for i in np.arange(1, n):
-        # Evaluate previous state to determine approprite conditional probabilities
+        # Evaluate previous state to determine appropriate conditional probabilities
         if states[i - 1] == 0:
             # We're in state G
             # Do a draw to see if we have an error
@@ -257,17 +257,15 @@ def fit_hmm(obs, n_fits=100, n_iter=100, init_params=None):
     best_r : float
         Estimate for probability of transitioning from Bad state to Good.
     best_k : float
-        Estimate for probability of no error occuring in the Good state.
+        Estimate for probability of no error occurring in the Good state.
     best_h : float
-        Estimate for probability of no error occuring in the Bad state.
+        Estimate for probability of no error occurring in the Bad state.
     best_model : hmmlearn.hmm.CategoricalHMM
         Full output model given obs and init_params.
 
     """
 
     # Initialize model
-    # MultinomialHMM correct in hmmlearn < 0.2.7 but 0.2.8 updated class name and broke backwards compatibility
-    # fit_model = hmm.MultinomialHMM(n_components=2, n_iter=n_iter) 
     fit_model = hmm.CategoricalHMM(n_components=2, n_iter=n_iter, implementation='scaling')
     # Two-state model (good and bad states)
     fit_model.n_features = 2
@@ -330,10 +328,14 @@ def fit_hmm(obs, n_fits=100, n_iter=100, init_params=None):
         # Attempt a fit
         try:
             fit_model.fit(obs)
-        except ValueError:
-            # Try reshaping the observations to expected type if we saw a ValueError
-            obs = np.array(obs).reshape(1, -1)
-            fit_model.fit(obs)
+        except ValueError as first_error:
+            try:
+                # Try reshaping the observations to expected type if we saw a ValueError
+                obs = np.array(obs).reshape(1, -1)
+                fit_model.fit(obs)
+            except ValueError as second_error:
+                raise second_error from first_error
+                
 
         # Update best model and score if necessary
         if best_score < fit_model.score(obs):
@@ -353,7 +355,7 @@ def fit_hmm(obs, n_fits=100, n_iter=100, init_params=None):
 
 def determine_model(obs, n_fits=100, n_iter=100):
     '''
-    Determine most likely version of Gilbert-Elliot model given observation.
+    Determine version of Gilbert-Elliot model with highest likelihood of emitting observation.
 
     Fits three versions of the Gilbert-Elliot model. The two-parameter case where
     p and r are estimated and k=1 and h=0 are fixed, the three-parameter case
@@ -363,7 +365,7 @@ def determine_model(obs, n_fits=100, n_iter=100):
     version is determined by comparing the "score" of each output, which is the
     log probability of the observation under the model.
 
-    It is important to note that there may be more than one set of  model
+    It is important to note that there may be more than one set of model
     parameters yield a given error pattern or very similar error patterns. As
     such, this method is not intended to be the primary decision driver for
     users looking to decide which model to use. It is best to only use a more
@@ -428,8 +430,8 @@ def simulate(params, n_obs=1000):
     Simulate errors using the Gilbert-Elliot burst model and a variety of controls as parameters.
 
     Creates a list representing an error signal. The error signal is expected
-    to be added with modulu 2 addition to a binary signal, so 0 means no error
-    and 1 means an error occured in that element. Translates error statistics
+    to be added with modulo 2 addition to a binary signal, so 0 means no error
+    and 1 means an error occurred in that element. Translates error statistics
     such as average loss rate or expected burst length to standard
     Gilbert-Elliot model parameters (p, r, k, h) prior to simulations.
 
@@ -510,7 +512,7 @@ def main():
     parser.add_argument(
         '--L1', '-L',
         type=float,
-        help='Average length of error burst. Must be greater than 1, i.e. in (1, infinity).'
+        help='Average length of error burst. Must be greater than 1, i.e., in (1, infinity).'
         )
     parser.add_argument(
         '--pi_B',

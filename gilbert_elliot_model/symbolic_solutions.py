@@ -59,7 +59,10 @@ def eval_param(params, p, r, h=None, k=None):
     Returns
     -------
     restrict : dict or sympy.sets.sets.Interval
-        DESCRIPTION.
+        If a dict is returned, restrict contains the Gilbert-Elliot model 
+        parameters from the error statistics given in params. If a sympy 
+        Interval is returned restrict is the interval for the free-parameter
+        that satisfies the conditions that 0 < p, r, k, h < 1.
 
     '''
     # Variables to track how many parameters were given and which one is free
@@ -175,7 +178,7 @@ def solve_region(ps, rs, free_param, hs=None, ks=None,):
 
     Expressions for each parameter of the Gilbert-Elliot model (p, r, k, h)
     written in terms of error statistic controls with at least all but one error
-    statistic substitued for a value. It then solves for the valid region for
+    statistic substituted for a value. It then solves for the valid region for
     the remaining parameter, given by free_param, by enforcing the basic
     constraints that p, r, k, and h are probabilities so
     0 < p, r, k, h < 1 must hold.
@@ -271,7 +274,6 @@ def valid_parameters(pairs=True):
     #--------------------------------------------------------------------------
     # ---- Valid parameter pair list
     #--------------------------------------------------------------------------
-    # These will be uncommented as they are implemented
     valid_parameter_pairs = [
         # ----- 2 parameter pairs
         {'p', 'r'},
@@ -286,7 +288,6 @@ def valid_parameters(pairs=True):
         {'p', 'r', 'k', 'h'},
         {'xbar', 'L1', 'pi_B', 'h'},
         {'xbar', 'L1', 'pi_B', 'k'},
-        # {'xbar', 'L1', 'pi_G', 'k'},
         ]
     if pairs:
         return valid_parameter_pairs
