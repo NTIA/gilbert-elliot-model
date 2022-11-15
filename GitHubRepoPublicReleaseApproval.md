@@ -1,7 +1,7 @@
 # GitHub Repository Public Release Approval
 
 ### Project Name: Audio Quality Research Project
-### Software Name: gilbert-elliot-model
+### Software Name: Gilbert-Elliot-model
 
 The project identified above, which is contained within the repository this document is stored in, has met the following criteria for public release:
 
