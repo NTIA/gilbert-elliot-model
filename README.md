@@ -1,7 +1,7 @@
 # gilbert-elliot-model
 
 The Gilbert-Elliot burst error model is a popular and effective tool for treating bursty (non-independent) errors in communication links.
-This software accompanies the NTIA Technical Memorandum 23-XXXX.
+This software accompanies the following publication: Pieper J; Voran S, [Relationships between Gilbert-Elliot Burst Error Model Parameters and Error Statistics](https://its.ntia.gov/publications/3298.aspx), NTIA Technical Memo TM-23-565. 
 It provides functions for simulating errors using the model and analyzing error arrays to estimate model parameters.
 It can also make an estimate of the most likely version of the model to emit a given observation: the two-parameter $(p, r)$, three-parameter $(p, r, h)$ or four-parameter $(p, r, k, h)$.
 
