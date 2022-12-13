@@ -1,0 +1,15 @@
+{
+    "creators": [
+        {   
+            "orcid": "0000-0001-8061-6216",
+            "affiliation": "The Institute for Telecommunication Sciences",
+            "name": "Pieper, Jaden"
+        }
+    ],
+
+    "title": "gilbert-elliot-model",
+
+    "upload_type": "software",
+
+    "keywords": ["bit-errors", "bursty errors", "error statistics", "Gilbert-Elliot", "Markov chain", "packet-loss"]
+}
