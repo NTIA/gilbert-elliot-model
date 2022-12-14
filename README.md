@@ -1,4 +1,6 @@
 # gilbert-elliot-model
+[![DOI](https://zenodo.org/badge/546160482.svg)](https://zenodo.org/badge/latestdoi/546160482)
+
 
 The Gilbert-Elliot burst error model is a popular and effective tool for treating bursty (non-independent) errors in communication links.
 This software accompanies the following publication: Pieper J; Voran S, [Relationships between Gilbert-Elliot Burst Error Model Parameters and Error Statistics](https://its.ntia.gov/publications/3298.aspx), NTIA Technical Memo TM-23-565. 
