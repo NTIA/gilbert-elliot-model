@@ -32,7 +32,7 @@ classifiers = [
 ]
 
 dependencies = [
-	"hmmlearn==0.2.8",
+	"hmmlearn>=0.2.8",
 	"numpy>=1.23.0",
 	"sympy>=1.10.1",
 	"pandas>=1.4.3",
